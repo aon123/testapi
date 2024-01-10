@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const NotesDB = require('../models/notes'); // Import your Notes model here
+const NotesDB = require('../model/Notes'); // Import your Notes model here
 
 // Create a new note
 router.post('/notes', async (req, res) => {
@@ -29,7 +29,7 @@ router.get('/notes', async (req, res) => {
   }
 });
 
-// Get a specific note by ID
+// Get a     note by ID
 router.get('/notes/:id', async (req, res) => {
   try {
     const note = await NotesDB.findById(req.params.id);
@@ -70,7 +70,7 @@ router.put('/notes/:id', async (req, res) => {
 // Delete a note by ID
 router.delete('/notes/:id', async (req, res) => {
   try {
-    const deletedNote = await NotesDB.findByIdAndRemove(req.params.id);
+    const deletedNote = await NotesDB.findByIdAndDelete(req.params.id);
 
     if (!deletedNote) {
       return res.status(404).json({ message: 'Note not found' });
